@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromRGBO(72, 141, 146, 1.0)),
         useMaterial3: true,
       ),
-      home: login_page(),
+      home: home_page(),
     );
   }
 }

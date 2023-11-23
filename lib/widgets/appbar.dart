@@ -11,19 +11,13 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         // mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            width: 100,
-            height: 90,
-            margin: EdgeInsets.symmetric(vertical: 30, horizontal: 1),
-            child: Container(
-              margin: EdgeInsets.only(top: 50),
-              child: Image.asset(
-                "lib/assets/imgs/logo.jpeg",
-                // height: 110,
-                // width: 15,
-              ),
+          Positioned(
+            bottom: 900,
+            child: Image.asset(
+              "lib/assets/imgs/logo.jpeg",
+              height: 110,
+              width: 150,
             ),
-            color: Colors.red,
           ),
           Text(title),
         ],
