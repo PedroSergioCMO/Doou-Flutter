@@ -1,6 +1,7 @@
+import 'package:doou/screens/login_page.dart';
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import '/screens/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromRGBO(72, 141, 146, 1.0)),
         useMaterial3: true,
       ),
-      home: home_page(),
+      home: login_page(),
     );
   }
 }
