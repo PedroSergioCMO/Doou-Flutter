@@ -1,19 +1,27 @@
-import 'package:doou/widgets/text_field_adaptada.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'cadastrosUsuario_page.dart';
+import '../widgets/text_field_adaptada.dart';
 
-class login_page extends StatefulWidget {
-  const login_page({Key? key});
+//   String nome;
+//   String email;
+//   String cpf; //Creador da campanha;
+//   String telefone;
+//   String senha;
+
+class cadastro_usuario extends StatefulWidget {
+  const cadastro_usuario({super.key});
 
   @override
-  State<login_page> createState() => _login_pageState();
+  State<cadastro_usuario> createState() => _cadastro_usuarioState();
 }
 
-class _login_pageState extends State<login_page> {
-  TextEditingController _usuarioController = TextEditingController();
+class _cadastro_usuarioState extends State<cadastro_usuario> {
+  TextEditingController _nomeController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _cpfController = TextEditingController();
+  TextEditingController _telefoneController = TextEditingController();
   bool _senhaVisibel = false;
 
   @override
@@ -24,10 +32,10 @@ class _login_pageState extends State<login_page> {
         alignment: Alignment.center,
         children: [
           Positioned(
-            top: 80,
+            top: 25,
             child: Image.asset(
               "lib/assets/imgs/logo.jpeg",
-              height: 200,
+              height: 150,
             ),
           ),
           Center(
@@ -36,18 +44,33 @@ class _login_pageState extends State<login_page> {
                 borderRadius: BorderRadius.circular(20),
               ),
               elevation: 2,
-              margin: EdgeInsets.symmetric(horizontal: 15),
+              margin: EdgeInsets.symmetric(horizontal: 10),
               child: Container(
-                padding: EdgeInsets.all(25),
+                padding: EdgeInsets.all(15),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     text_field_adaptada(
-                      labelText: "Usuário",
-                      controller: _usuarioController,
+                      labelText: "Nome",
+                      controller: _nomeController,
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 10,
+                    ),
+                    text_field_adaptada(
+                        labelText: "E-mail", controller: _emailController),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    text_field_adaptada(
+                        labelText: "Cpf", controller: _cpfController),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    text_field_adaptada(
+                        labelText: "Telefone", controller: _telefoneController),
+                    SizedBox(
+                      height: 10,
                     ),
                     text_field_adaptada(
                       obscureText: !_senhaVisibel,
@@ -72,20 +95,10 @@ class _login_pageState extends State<login_page> {
                           padding: EdgeInsets.all(10),
                           margin: EdgeInsets.only(top: 30),
                           child: ElevatedButton(
-                            child: Text("Logar"),
-                            onPressed: () {
-                              Get.toNamed("/home");
-                              //logica para verificar se o usuario digitado existe no banco
-                            },
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          margin: EdgeInsets.only(top: 30),
-                          child: ElevatedButton(
                             child: Text("Cadastrar"),
                             onPressed: () {
-                              Get.toNamed("/cadastro");
+                              Get.toNamed("/");
+                              //logica para enviar o usuario para API
                             },
                           ),
                         )
@@ -99,5 +112,6 @@ class _login_pageState extends State<login_page> {
         ],
       ),
     );
+    ;
   }
 }

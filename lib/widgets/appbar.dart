@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 
 class Appbar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
+  //final String title;
 
-  Appbar({required this.title});
+  //Appbar({required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Row(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Positioned(
-            bottom: 900,
-            child: Image.asset(
-              "lib/assets/imgs/logo.jpeg",
-              height: 110,
-              width: 150,
-            ),
+    return Container(
+      height: 300,
+      child: AppBar(
+        title: Container(
+          child: Image.asset(
+            "lib/assets/imgs/logo.jpeg",
+            height: 100,
+            width: 200,
           ),
-          Text(title),
+        ),
+
+        //Text(title),
+        centerTitle: true,
+        backgroundColor: Color.fromRGBO(0, 0, 0, 1),
+        // 72, 141, 146, 1.0
+        actions: [
+          // Spacer(),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          ),
         ],
       ),
-      backgroundColor: Color.fromRGBO(72, 141, 146, 1.0),
-      actions: [
-        // Spacer(),
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () {},
-        ),
-      ],
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(90.0);
+  Size get preferredSize => Size.fromHeight(kTextTabBarHeight);
 }
 
 
