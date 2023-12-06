@@ -2,23 +2,35 @@ import 'package:doou/models/campanha_model.dart';
 import 'package:get/get.dart';
 
 class CampanhaController extends GetxController {
-  List<Campanha> _campanhas = List<Campanha>.empty(growable: true).obs;
+  var _campanhas = <Campanha>[].obs;
 
-  List<Campanha> get cartItens => _campanhas;
+  List<Campanha> get campanhas => _campanhas;
 
-  double get totalMeta {
-    double total = 0.0;
-    _campanhas.forEach((campanha) {
-      total += campanha.meta;
-    });
-    return total;
+  void adicionarCampanha({
+    required String nome,
+    required String descricao,
+    required String criador,
+    required String imagemCapa,
+    required String imagens,
+    required double meta,
+    required double valorArrecadado,
+    required String categoria,
+  }) {
+    Campanha novaCampanha = Campanha(
+      nome,
+      descricao,
+      criador,
+      imagemCapa,
+      imagens,
+      meta,
+      valorArrecadado,
+      categoria,
+    );
+
+    _campanhas.add(novaCampanha);
   }
 
-  void add(Campanha campanha) {
-    _campanhas.add(campanha);
-  }
-
-  void remove(Campanha campanha) {
+  void removerCampanha(Campanha campanha) {
     _campanhas.remove(campanha);
   }
 }

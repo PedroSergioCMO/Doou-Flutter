@@ -74,7 +74,7 @@ class _login_pageState extends State<login_page> {
                           child: ElevatedButton(
                             child: Text("Logar"),
                             onPressed: () {
-                              Get.toNamed("/home");
+                              Get.toNamed("/cadastroCampannha");
                               //logica para verificar se o usuario digitado existe no banco
                             },
                           ),
