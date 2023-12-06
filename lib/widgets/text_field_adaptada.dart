@@ -25,12 +25,23 @@ class _text_field_adaptadaState extends State<text_field_adaptada> {
       controller: widget.controller,
       obscureText: widget.obscureText,
       decoration: InputDecoration(
-          labelText: widget.labelText,
-          prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.suffixIcon,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          )),
+        labelStyle: TextStyle(color: Colors.white),
+        labelText: widget.labelText,
+        prefixIcon: widget.prefixIcon,
+        suffixIcon: widget.suffixIcon,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(color: Colors.white),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(color: Colors.white),
+        ),
+        // border: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(20),
+        //   borderSide: BorderSide(color: Colors.red),
+        // )
+      ),
     );
   }
 }

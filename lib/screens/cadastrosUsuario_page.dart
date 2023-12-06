@@ -40,6 +40,7 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
           ),
           Center(
             child: Card(
+              color: Color.fromRGBO(95, 178, 184, 1),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -76,11 +77,11 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
                       obscureText: !_senhaVisibel,
                       labelText: "Senha",
                       controller: _senhaController,
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: Icon(Icons.lock, color: Colors.white),
                       suffixIcon: IconButton(
                         icon: _senhaVisibel
-                            ? Icon(Icons.visibility)
-                            : Icon(Icons.visibility_off),
+                            ? Icon(Icons.visibility, color: Colors.white)
+                            : Icon(Icons.visibility_off, color: Colors.white),
                         onPressed: () {
                           setState(() {
                             _senhaVisibel = !_senhaVisibel;
