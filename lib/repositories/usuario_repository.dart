@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-
 // import 'package:Doou-Flutter/models/usuario.dart';
 
 import 'package:doou/models/usuario_model.dart';
