@@ -1,6 +1,6 @@
 import 'package:doou/bindings/main_binding.dart';
 import 'package:doou/screens/cadastro_campanha.dart';
-import 'package:doou/screens/cadastrosUsuario_page.dart';
+import 'package:doou/screens/cadastros_usuario_page.dart';
 import 'package:doou/screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

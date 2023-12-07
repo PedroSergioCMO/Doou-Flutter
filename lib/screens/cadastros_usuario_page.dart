@@ -1,3 +1,5 @@
+import 'package:doou/models/usuario_model.dart';
+import 'package:doou/repositories/usuario_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +25,8 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
   TextEditingController _cpfController = TextEditingController();
   TextEditingController _telefoneController = TextEditingController();
   bool _senhaVisibel = false;
+
+  UsuarioRepository usuarioRepository = UsuarioRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +101,28 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
                           margin: EdgeInsets.only(top: 30),
                           child: ElevatedButton(
                             child: Text("Cadastrar"),
-                            onPressed: () {
-                              Get.toNamed("/");
+                            onPressed: () async {
+                              if (_nomeController.text != '' &&
+                                  _emailController.text != '' &&
+                                  _cpfController.text != '' &&
+                                  _telefoneController.text != '' &&
+                                  _senhaController.text != '') {
+                                Usuario novoUsuario = Usuario(
+                                    id: "0",
+                                    nome: _nomeController.text,
+                                    email: _emailController.text,
+                                    cpf: _cpfController.text,
+                                    telefone: _telefoneController.text,
+                                    senha: _senhaController.text);
+
+                                Usuario usuarioCadastrado =
+                                    await usuarioRepository
+                                        .criarNovoUsuario(novoUsuario);
+                                // print(usuarioCadastrado);
+ 
+                                Get.toNamed("/");
+                              }
+
                               //logica para enviar o usuario para API
                             },
                           ),

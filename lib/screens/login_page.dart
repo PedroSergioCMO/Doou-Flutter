@@ -1,8 +1,10 @@
+import 'package:doou/models/login_model.dart';
+import 'package:doou/repositories/login_repositoy.dart';
 import 'package:doou/widgets/text_field_adaptada.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'cadastrosUsuario_page.dart';
+import 'cadastros_usuario_page.dart';
 
 class login_page extends StatefulWidget {
   const login_page({Key? key});
@@ -16,6 +18,7 @@ class _login_pageState extends State<login_page> {
   TextEditingController _senhaController = TextEditingController();
   bool _senhaVisibel = false;
 
+  LoginRepository loginRepository = LoginRepository();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,8 +80,19 @@ class _login_pageState extends State<login_page> {
                           margin: EdgeInsets.only(top: 30),
                           child: ElevatedButton(
                             child: Text("Logar"),
-                            onPressed: () {
-                              Get.toNamed("/cadastroCampannha");
+                            onPressed: () async {
+                              if (_usuarioController.text != "" &&
+                                  _senhaController.text != "") {
+                                Login login = Login(
+                                    email: _usuarioController.text,
+                                    senha: _senhaController.text);
+
+                                Login loginAPI =
+                                    await loginRepository.login(login);
+
+                                Get.toNamed("/cadastroCampannha");
+                              }
+
                               //logica para verificar se o usuario digitado existe no banco
                             },
                           ),
