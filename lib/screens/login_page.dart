@@ -92,7 +92,6 @@ class _login_pageState extends State<login_page> {
 
                                 Get.toNamed("/cadastroCampannha");
                               }
-
                               //logica para verificar se o usuario digitado existe no banco
                             },
                           ),
@@ -106,7 +105,7 @@ class _login_pageState extends State<login_page> {
                               Get.toNamed("/cadastro");
                             },
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],

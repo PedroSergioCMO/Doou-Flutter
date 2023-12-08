@@ -119,14 +119,14 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
                                     await usuarioRepository
                                         .criarNovoUsuario(novoUsuario);
                                 // print(usuarioCadastrado);
- 
+
                                 Get.toNamed("/");
                               }
 
                               //logica para enviar o usuario para API
                             },
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],

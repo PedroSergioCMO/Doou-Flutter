@@ -2,6 +2,7 @@ import 'package:doou/controllers/campanha_controller.dart';
 import 'package:doou/widgets/newAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CadastroCampanhaScreen extends StatefulWidget {
   @override
@@ -17,6 +18,19 @@ class _CadastroCampanhaScreenState extends State<CadastroCampanhaScreen> {
   TextEditingController metaController = TextEditingController();
   TextEditingController valorArrecadadoController = TextEditingController();
   TextEditingController categoriaController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    verificarUsuario().then((temUsuario) => {
+          if (temUsuario)
+            {print("Tem usuário")}
+          else
+            {
+              Get.toNamed("/"),
+            }
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,10 +128,48 @@ class _CadastroCampanhaScreenState extends State<CadastroCampanhaScreen> {
                 },
                 child: Text('Cadastrar Campanha'),
               ),
+              ElevatedButton(
+                onPressed: () async {
+                  SharedPreferences _sharePreference =
+                      await SharedPreferences.getInstance();
+
+                  String? token = _sharePreference.getString('token');
+
+                  if (token != null) {
+                    _sharePreference.remove('token');
+                    print('Token removido com sucesso.');
+                  } else {
+                    print('Nenhum token encontrado para remover.');
+                  }
+
+                  setState(() {
+                    verificarUsuario().then((temUsuario) => {
+                          if (temUsuario)
+                            {print("Tem usuário")}
+                          else
+                            {
+                              Get.toNamed("/"),
+                            }
+                        });
+                  });
+                },
+                child: Text("logout"),
+              )
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+Future<bool> verificarUsuario() async {
+  SharedPreferences _sharedPreferences = await SharedPreferences.getInstance();
+  String? token = _sharedPreferences.getString('token');
+
+  if (token == null) {
+    return false;
+  } else {
+    return true;
   }
 }

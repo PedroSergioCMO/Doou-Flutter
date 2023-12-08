@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class newAppBar extends StatelessWidget implements PreferredSize {
   @override
@@ -9,9 +11,30 @@ class newAppBar extends StatelessWidget implements PreferredSize {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Image.asset(
-          "lib/assets/imgs/logo.jpeg",
-          width: 70,
+        title: Row(
+          children: [
+            Image.asset(
+              "lib/assets/imgs/logo.jpeg",
+              width: 70,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                SharedPreferences _sharePreference =
+                    await SharedPreferences.getInstance();
+
+                String? token = _sharePreference.getString('token');
+
+                if (token != null) {
+                  _sharePreference.remove('token');
+                  Get.offAllNamed('/');
+                  print('Token removido com sucesso.');
+                } else {
+                  print('Nenhum token encontrado para remover.');
+                }
+              },
+              child: Text("logout"),
+            )
+          ],
         ),
         backgroundColor: Color.fromRGBO(72, 141, 146, 1.0),
       ),

@@ -7,7 +7,7 @@ import 'package:doou/models/usuario_model.dart';
 import 'package:http/http.dart' as http;
 
 class UsuarioRepository {
-  final String baseUrl = 'http://172.17.104.197:3000'; // Substitua pela sua URL
+  final String baseUrl = 'http://10.1.1.134:3000'; // Substitua pela sua URL
 
   Future<Usuario> getUsuarioById(int id) async {
     final response = await http.get(Uri.parse('$baseUrl/usuario/$id'));

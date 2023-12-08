@@ -5,10 +5,12 @@ import 'dart:io';
 
 import 'package:doou/models/login_model.dart';
 import 'package:doou/models/usuario_model.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginRepository {
-  final String baseUrl = 'http://172.17.104.197:3000';
+  final String baseUrl = 'http://10.1.1.134:3000';
 
   Future<Login> login(Login login) async {
     final response = await http.post(
@@ -18,10 +20,15 @@ class LoginRepository {
     );
 
     if (response.statusCode == 200) {
+      String token = json.decode(response.body)['token'];
+      SharedPreferences _sharedpreference =
+          await SharedPreferences.getInstance() as SharedPreferences;
+
+      await _sharedpreference.setString('token', 'token $token');
+      print(json.decode(response.body)['token']);
       return Login.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Falha ao criar novo usuário');
+      throw Exception('Falha ao logar');
     }
   }
-
 }
