@@ -128,33 +128,33 @@ class _CadastroCampanhaScreenState extends State<CadastroCampanhaScreen> {
                 },
                 child: Text('Cadastrar Campanha'),
               ),
-              ElevatedButton(
-                onPressed: () async {
-                  SharedPreferences _sharePreference =
-                      await SharedPreferences.getInstance();
+              // ElevatedButton(
+              //   onPressed: () async {
+              //     SharedPreferences _sharePreference =
+              //         await SharedPreferences.getInstance();
 
-                  String? token = _sharePreference.getString('token');
+              //     String? token = _sharePreference.getString('token');
 
-                  if (token != null) {
-                    _sharePreference.remove('token');
-                    print('Token removido com sucesso.');
-                  } else {
-                    print('Nenhum token encontrado para remover.');
-                  }
+              //     if (token != null) {
+              //       _sharePreference.remove('token');
+              //       print('Token removido com sucesso.');
+              //     } else {
+              //       print('Nenhum token encontrado para remover.');
+              //     }
 
-                  setState(() {
-                    verificarUsuario().then((temUsuario) => {
-                          if (temUsuario)
-                            {print("Tem usuário")}
-                          else
-                            {
-                              Get.toNamed("/"),
-                            }
-                        });
-                  });
-                },
-                child: Text("logout"),
-              )
+              //     setState(() {
+              //       verificarUsuario().then((temUsuario) => {
+              //             if (temUsuario)
+              //               {print("Tem usuário")}
+              //             else
+              //               {
+              //                 Get.toNamed("/"),
+              //               }
+              //           });
+              //     });
+              //   },
+              //   child: Text("logout"),
+              // )
             ],
           ),
         ),

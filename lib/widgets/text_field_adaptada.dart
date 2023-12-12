@@ -5,6 +5,7 @@ class text_field_adaptada extends StatefulWidget {
   Icon? prefixIcon;
   var suffixIcon;
   bool obscureText = false;
+  bool keyboardNumber = false;
   TextEditingController controller;
 
   text_field_adaptada(
@@ -12,6 +13,7 @@ class text_field_adaptada extends StatefulWidget {
       this.prefixIcon,
       this.suffixIcon,
       this.obscureText = false,
+      this.keyboardNumber = false,
       required this.controller});
 
   @override
@@ -19,11 +21,17 @@ class text_field_adaptada extends StatefulWidget {
 }
 
 class _text_field_adaptadaState extends State<text_field_adaptada> {
+  bool isNumericKeyboard() {
+    return widget.keyboardNumber;
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: widget.controller,
       obscureText: widget.obscureText,
+      keyboardType:
+          isNumericKeyboard() ? TextInputType.number : TextInputType.text,
       decoration: InputDecoration(
         labelStyle: TextStyle(color: Colors.white),
         labelText: widget.labelText,

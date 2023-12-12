@@ -12,28 +12,54 @@ class newAppBar extends StatelessWidget implements PreferredSize {
       appBar: AppBar(
         centerTitle: true,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.asset(
               "lib/assets/imgs/logo.jpeg",
               width: 70,
+              alignment: Alignment.center,
             ),
-            ElevatedButton(
-              onPressed: () async {
-                SharedPreferences _sharePreference =
-                    await SharedPreferences.getInstance();
+            Container(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                icon: Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                onPressed: () async {
+                  SharedPreferences _sharePreference =
+                      await SharedPreferences.getInstance();
 
-                String? token = _sharePreference.getString('token');
+                  String? token = _sharePreference.getString('token');
 
-                if (token != null) {
-                  _sharePreference.remove('token');
-                  Get.offAllNamed('/');
-                  print('Token removido com sucesso.');
-                } else {
-                  print('Nenhum token encontrado para remover.');
-                }
-              },
-              child: Text("logout"),
+                  if (token != null) {
+                    _sharePreference.remove('token');
+                    Get.offAllNamed('/');
+                    print('Token removido com sucesso.');
+                  } else {
+                    print('Nenhum token encontrado para remover.');
+                  }
+                },
+              ),
             )
+            // Icon(
+
+            //   OnTap: () async {
+            //     SharedPreferences _sharePreference =
+            //         await SharedPreferences.getInstance();
+
+            //     String? token = _sharePreference.getString('token');
+
+            //     if (token != null) {
+            //       _sharePreference.remove('token');
+            //       Get.offAllNamed('/');
+            //       print('Token removido com sucesso.');
+            //     } else {
+            //       print('Nenhum token encontrado para remover.');
+            //     }
+            //   },
+            //   child: Text("logout"),
+            // )
           ],
         ),
         backgroundColor: Color.fromRGBO(72, 141, 146, 1.0),

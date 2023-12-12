@@ -79,22 +79,25 @@ class _login_pageState extends State<login_page> {
                           padding: EdgeInsets.all(10),
                           margin: EdgeInsets.only(top: 30),
                           child: ElevatedButton(
-                            child: Text("Logar"),
-                            onPressed: () async {
-                              if (_usuarioController.text != "" &&
-                                  _senhaController.text != "") {
-                                Login login = Login(
-                                    email: _usuarioController.text,
-                                    senha: _senhaController.text);
+                              child: Text("Logar"),
+                              onPressed: () async {
+                                if (_usuarioController.text != "" &&
+                                    _senhaController.text != "") {
+                                  Login login = Login(
+                                      email: _usuarioController.text,
+                                      senha: _senhaController.text);
 
-                                Login loginAPI =
-                                    await loginRepository.login(login);
-
-                                Get.toNamed("/cadastroCampannha");
+                                  Login loginAPI =
+                                      await loginRepository.login(login);
+                                  print(loginAPI);
+                                  Get.toNamed("/cadastroCampannha");
+                                } else {
+                                  Get.snackbar("Login Inválido",
+                                      "Preencha todos os Campos", backgroundColor: Colors.amber);
+                                }
                               }
                               //logica para verificar se o usuario digitado existe no banco
-                            },
-                          ),
+                              ),
                         ),
                         Container(
                           padding: EdgeInsets.all(10),

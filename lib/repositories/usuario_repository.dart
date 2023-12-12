@@ -4,10 +4,12 @@ import 'dart:io';
 // import 'package:Doou-Flutter/models/usuario.dart';
 
 import 'package:doou/models/usuario_model.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class UsuarioRepository {
-  final String baseUrl = 'http://10.1.1.134:3000'; // Substitua pela sua URL
+  final String baseUrl = 'http://192.168.3.5:3000'; // Substitua pela sua URL
 
   Future<Usuario> getUsuarioById(int id) async {
     final response = await http.get(Uri.parse('$baseUrl/usuario/$id'));
@@ -27,8 +29,18 @@ class UsuarioRepository {
     );
 
     if (response.statusCode == 200) {
+      Get.snackbar('Sucesso', 'Usuário Cadastrado!',
+            backgroundColor: Colors.green);
       return Usuario.fromJson(json.decode(response.body));
-    } else {
+
+    } else if(response.statusCode == 400){
+      Get.snackbar('Erro', response.body,
+            backgroundColor: Colors.red);
+      throw Exception('Falha ao criar novo usuário');
+    
+    }else {
+      Get.snackbar('Erro', 'Falha ao criar novo usuário!',
+            backgroundColor: Colors.red);
       throw Exception('Falha ao criar novo usuário');
     }
   }

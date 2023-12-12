@@ -68,12 +68,12 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
                       height: 10,
                     ),
                     text_field_adaptada(
-                        labelText: "Cpf", controller: _cpfController),
+                        labelText: "Cpf", controller: _cpfController, keyboardNumber: true,), 
                     SizedBox(
                       height: 10,
                     ),
                     text_field_adaptada(
-                        labelText: "Telefone", controller: _telefoneController),
+                        labelText: "Telefone", controller: _telefoneController, keyboardNumber: true,),
                     SizedBox(
                       height: 10,
                     ),
@@ -121,6 +121,9 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
                                 // print(usuarioCadastrado);
 
                                 Get.toNamed("/");
+                              }else{
+                                 Get.snackbar("Erro",
+                                      "Preencha todos os Campos", backgroundColor: Colors.amber);
                               }
 
                               //logica para enviar o usuario para API
