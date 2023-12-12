@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginRepository {
-  final String baseUrl = 'http://192.168.3.5:3000';
+  final String baseUrl = 'http://10.1.4.12:3000';
 
   Future<Login> login(Login login) async {
       final response = await http.post(
@@ -25,7 +25,7 @@ class LoginRepository {
         SharedPreferences _sharedpreference =
             await SharedPreferences.getInstance() as SharedPreferences;
 
-        await _sharedpreference.setString('token', 'token $token');
+        await _sharedpreference.setString('token', token);
         print(json.decode(response.body)['token']);
 
         Get.snackbar('Sucesso', 'Login bem-sucedido!',
