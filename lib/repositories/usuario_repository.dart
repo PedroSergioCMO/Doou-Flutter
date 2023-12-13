@@ -9,7 +9,9 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class UsuarioRepository {
+
   final String baseUrl = 'http://10.1.4.12:3000'; // Substitua pela sua URL
+
 
   Future<Usuario> getUsuarioById(int id) async {
     final response = await http.get(Uri.parse('$baseUrl/usuario/$id'));
