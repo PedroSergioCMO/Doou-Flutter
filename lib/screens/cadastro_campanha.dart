@@ -27,9 +27,10 @@ class _CadastroCampanhaScreenState extends State<CadastroCampanhaScreen> {
     super.initState();
     verificarUsuario().then((temUsuario) => {
           if (temUsuario)
-            {print("Tem usuário")}
+            {print("Cadastro Campanha, Tem usuário")}
           else
             {
+              print("Cadastro Campanha, Não usuário"),
               Get.toNamed("/"),
             }
         });
@@ -180,6 +181,7 @@ class _CadastroCampanhaScreenState extends State<CadastroCampanhaScreen> {
 Future<bool> verificarUsuario() async {
   SharedPreferences _sharedPreferences = await SharedPreferences.getInstance();
   String? token = _sharedPreferences.getString('token');
+  print("printando o token na validação: '$token'" );
 
   if (token == null) {
     return false;

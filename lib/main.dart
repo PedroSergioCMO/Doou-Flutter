@@ -36,8 +36,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/home", page: () => home_page(), binding: MainBinding()),
         GetPage(name: "/cadastro", page: () => cadastro_usuario()),
         GetPage(
-            name: "/cadastroCampannha", page: () => CadastroCampanhaScreen()),
+            name: "/cadastroCampanha", page: () => CadastroCampanhaScreen()),
       ],
+      
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromRGBO(72, 141, 146, 1.0)),

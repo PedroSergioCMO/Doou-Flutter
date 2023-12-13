@@ -90,7 +90,7 @@ class _login_pageState extends State<login_page> {
                                   Login loginAPI =
                                       await loginRepository.login(login);
                                   print(loginAPI);
-                                  Get.toNamed("/cadastroCampannha");
+                                  Get.toNamed("/home");
                                 } else {
                                   Get.snackbar("Login Inválido",
                                       "Preencha todos os Campos", backgroundColor: Colors.amber);

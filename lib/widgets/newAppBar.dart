@@ -10,6 +10,9 @@ class newAppBar extends StatelessWidget implements PreferredSize {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white, // Defina a cor desejada aqui
+        ),
         centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
