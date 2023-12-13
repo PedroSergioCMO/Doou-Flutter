@@ -1,4 +1,4 @@
-import 'package:doou/controllers/campanha_controller.dart';
+//import 'package:doou/controllers/campanha_controller.dart';
 import 'package:doou/models/campanha_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,7 +44,7 @@ class _CampanhaFormatadaState extends State<CampanhaFormatada> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  _campanha.meta.toStringAsFixed(2),
+                  _campanha.meta!.toStringAsFixed(2),
                   style: TextStyle(fontSize: 20),
                 ),
               ],

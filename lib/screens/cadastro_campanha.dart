@@ -1,8 +1,10 @@
-import 'package:doou/controllers/campanha_controller.dart';
+//import 'package:doou/controllers/campanha_controller.dart';
+import 'package:doou/models/campanha_model.dart';
 import 'package:doou/widgets/newAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:doou/repositories/campanha_repository.dart';
 
 class CadastroCampanhaScreen extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class CadastroCampanhaScreen extends StatefulWidget {
 }
 
 class _CadastroCampanhaScreenState extends State<CadastroCampanhaScreen> {
+  CampanhaRepository campanhaRepository = CampanhaRepository();
   TextEditingController nomeController = TextEditingController();
   TextEditingController descricaoController = TextEditingController();
   TextEditingController criadorController = TextEditingController();
@@ -101,21 +104,32 @@ class _CadastroCampanhaScreenState extends State<CadastroCampanhaScreen> {
                 height: 10,
               ),
               ElevatedButton(
-                onPressed: () {
-                  CampanhaController campanhaController = Get.find();
-                  // Chame o método adicionarCampanha do controlador
-                  campanhaController.adicionarCampanha(
-                    nome: nomeController.text,
-                    descricao: descricaoController.text,
-                    criador: criadorController.text,
-                    imagemCapa: imagemCapaController.text,
-                    imagens: imagensController.text,
-                    meta: double.parse(metaController.text),
-                    valorArrecadado:
-                        double.parse(valorArrecadadoController.text),
-                    categoria: categoriaController.text,
-                  );
+                onPressed: () async {
+                  if (nomeController.text != '' &&
+                      descricaoController.text != '' &&
+                      criadorController.text != '' &&
+                      imagemCapaController.text != '' &&
+                      imagensController.text != '' &&
+                      metaController.text != '' &&
+                      valorArrecadadoController.text != '' &&
+                      categoriaController.text != '') {
+                    Campanha novaCampanha = Campanha(
+                        id: 0,
+                        nome: nomeController.text,
+                        descricao: descricaoController.text,
+                        // criador: criadorController.text,
+                        imagemCapa: imagemCapaController.text,
+                        imagens: imagensController.text,
+                        categoria: categoriaController.text,
+                        meta: double.tryParse(metaController.text),
+                        valorArrecadado: 0.0);
 
+                    Campanha campanhaCadastrada = await campanhaRepository
+                        .criarNovaCampanha(novaCampanha);
+                    // print(usuarioCadastrado);
+
+                    Get.toNamed("/home");
+                  }
                   // Limpe os controladores após a adição
                   nomeController.clear();
                   descricaoController.clear();
